@@ -3,11 +3,11 @@ package Dominio.Constantes;
 public class EConstantes {
     private static String[] opcionesDivisas = 
     {
-        "USD","EUR","COP","MXN","CNY","RUB"
+        "USD","EUR","GBP","CNY","KRW","COP","MXN","RUB"
     };
     private static float[] equivalenciaDivisas = 
     {
-    		1,1.07f,0.00021f,0.055f,0.15F,0.013f
+    		1,1.07f,1.21f,0.15F,0.00076f,0.00021f,0.055f,0.013f
     };
     
     private static String[] opcionesTemp = 

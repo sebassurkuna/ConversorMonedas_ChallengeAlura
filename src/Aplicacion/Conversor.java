@@ -8,7 +8,7 @@ public class Conversor implements IConversorDivisas, IConversorTemp {
 	 * Funcion que permite la conversión entre Divisas tomando el
 	 * valor de cada divisa en dolares
 	 * @param cantidad
-	 * @parama valorDivisaUnoDolar
+	 * @param valorDivisaUnoDolar
 	 * @param valorDivisaDosDolar
 	 * @return float
 	 */

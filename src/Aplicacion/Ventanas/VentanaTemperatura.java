@@ -25,10 +25,6 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.UIManager;
 import java.awt.Cursor;
 import java.awt.Insets;
 
