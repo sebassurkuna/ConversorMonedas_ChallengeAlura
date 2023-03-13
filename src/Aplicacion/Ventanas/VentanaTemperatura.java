@@ -25,18 +25,22 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.UIManager;
 import java.awt.Cursor;
 import java.awt.Insets;
 
-public class VentanaDivisas extends JFrame implements ActionListener {
+public class VentanaTemperatura extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField textCantidad;
-	private JComboBox divisaOrigen;
-	private JComboBox divisaDestino;
-	private JLabel lblDivOrigen_1;
-	private JLabel lblDivResultado;
-	private String[] _opcionesDivisas;
+	private JComboBox tempOrigen;
+	private JComboBox tempDestino;
+	private JLabel lblTempOrigen;
+	private JLabel lblTempResultado;
+	private String[] _opcionesTemp;
 	private JLabel lblCantidadOrigen;
 	private JLabel lblResultado;
 	private Conversor _conversor;
@@ -44,10 +48,10 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 	/**
 	 * Creación de la ventana.
 	 */
-	public VentanaDivisas() {
+	public VentanaTemperatura() {
 
 		_conversor = new Conversor();
-		_opcionesDivisas = EConstantes.getOpcionesDivisas();
+		_opcionesTemp = EConstantes.getOpcionesTemp();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 383, 310);
 		contentPane = new JPanel();
@@ -61,7 +65,7 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
-		JLabel lblTitulo = new JLabel("Conversor de Divisas");
+		JLabel lblTitulo = new JLabel("Conversor de Temperatura");
 		lblTitulo.setForeground(new Color(10, 56, 113));
 		lblTitulo.setBounds(0, 20, 359, 37);
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,11 +105,11 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 		lblResultado.setBounds(192, 223, 105, 45);
 		contentPane.add(lblResultado);
 		
-		lblDivOrigen_1 = new JLabel(_opcionesDivisas[0]);
-		lblDivOrigen_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDivOrigen_1.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 20));
-		lblDivOrigen_1.setBounds(116, 223, 56, 45);
-		contentPane.add(lblDivOrigen_1);
+		lblTempOrigen = new JLabel(_opcionesTemp[0]);
+		lblTempOrigen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTempOrigen.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 20));
+		lblTempOrigen.setBounds(116, 223, 56, 45);
+		contentPane.add(lblTempOrigen);
 		
 		JLabel lblIgual = new JLabel("=");
 		lblIgual.setHorizontalAlignment(SwingConstants.CENTER);
@@ -113,34 +117,34 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 		lblIgual.setBounds(159, 213, 48, 64);
 		contentPane.add(lblIgual);
 		
-		lblDivResultado = new JLabel(_opcionesDivisas[0]);
-		lblDivResultado.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDivResultado.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 20));
-		lblDivResultado.setBounds(292, 223, 62, 45);
-		contentPane.add(lblDivResultado);
+		lblTempResultado = new JLabel(_opcionesTemp[0]);
+		lblTempResultado.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTempResultado.setFont(new Font("Tw Cen MT", Font.BOLD | Font.ITALIC, 20));
+		lblTempResultado.setBounds(292, 223, 62, 45);
+		contentPane.add(lblTempResultado);
 		
 		
-		divisaOrigen = new JComboBox();
-		divisaOrigen.setAutoscrolls(true);
-		divisaOrigen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		divisaOrigen.setBackground(new Color(255, 255, 255));
-		divisaOrigen.setBorder(null);
-		divisaOrigen.setModel(new DefaultComboBoxModel(_opcionesDivisas));
-		divisaOrigen.setSelectedIndex(0);
-		divisaOrigen.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
-		divisaOrigen.setBounds(59, 154, 98, 21);
-		contentPane.add(divisaOrigen);
+		tempOrigen = new JComboBox();
+		tempOrigen.setAutoscrolls(true);
+		tempOrigen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		tempOrigen.setBackground(new Color(255, 255, 255));
+		tempOrigen.setBorder(null);
+		tempOrigen.setModel(new DefaultComboBoxModel(_opcionesTemp));
+		tempOrigen.setSelectedIndex(0);
+		tempOrigen.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
+		tempOrigen.setBounds(59, 154, 98, 21);
+		contentPane.add(tempOrigen);
 		
-		divisaDestino = new JComboBox();
-		divisaDestino.setBackground(new Color(255, 255, 255));
-		divisaDestino.setAutoscrolls(true);
-		divisaDestino.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		divisaDestino.setBorder(null);
-		divisaDestino.setModel(new DefaultComboBoxModel(_opcionesDivisas));
-		divisaDestino.setSelectedIndex(0);
-		divisaDestino.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
-		divisaDestino.setBounds(239, 154, 98, 21);
-		contentPane.add(divisaDestino);
+		tempDestino = new JComboBox();
+		tempDestino.setBackground(new Color(255, 255, 255));
+		tempDestino.setAutoscrolls(true);
+		tempDestino.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		tempDestino.setBorder(null);
+		tempDestino.setModel(new DefaultComboBoxModel(_opcionesTemp));
+		tempDestino.setSelectedIndex(0);
+		tempDestino.setFont(new Font("Tw Cen MT", Font.ITALIC, 20));
+		tempDestino.setBounds(239, 154, 98, 21);
+		contentPane.add(tempDestino);
 		
 		textCantidad = new JTextField();
 		textCantidad.setMargin(new Insets(2, 10, 2, 2));
@@ -167,8 +171,8 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 		contentPane.add(textCantidad);
 		textCantidad.setColumns(10);
 		
-		divisaOrigen.addActionListener(this);
-		divisaDestino.addActionListener(this);
+		tempOrigen.addActionListener(this);
+		tempDestino.addActionListener(this);
 		textCantidad.addActionListener(this);
 	}
 	
@@ -177,12 +181,12 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(divisaOrigen==e.getSource()) {
-			lblDivOrigen_1.setText(_opcionesDivisas[divisaOrigen.getSelectedIndex()]);
+		if(tempOrigen==e.getSource()) {
+			lblTempOrigen.setText(_opcionesTemp[tempOrigen.getSelectedIndex()]);
 			setLabels();
 		}
-		if(divisaDestino==e.getSource()) {
-			lblDivResultado.setText(_opcionesDivisas[divisaDestino.getSelectedIndex()]);
+		if(tempDestino==e.getSource()) {
+			lblTempResultado.setText(_opcionesTemp[tempDestino.getSelectedIndex()]);
 			setLabels();
 		}
 		if(textCantidad==e.getSource()) {
@@ -239,8 +243,8 @@ public class VentanaDivisas extends JFrame implements ActionListener {
 	 */
 	private void setLabels() {
 		lblCantidadOrigen.setText(numTruncado(Float.valueOf(textCantidad.getText())));
-		lblResultado.setText(numTruncado(_conversor.ConvertirDivisas(Float.valueOf(textCantidad.getText()), 
-				EConstantes.getEquivalenciaDivisas()[divisaOrigen.getSelectedIndex()], 
-				EConstantes.getEquivalenciaDivisas()[divisaDestino.getSelectedIndex()])));
+		lblResultado.setText(numTruncado(_conversor.ConvertirTemperatura(Float.valueOf(textCantidad.getText()), 
+				String.valueOf(tempOrigen.getSelectedIndex()+1), 
+				String.valueOf(tempDestino.getSelectedIndex()+1))));
 	}
 }
